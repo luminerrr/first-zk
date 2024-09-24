@@ -1,5 +1,4 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul" ?>
-
 <zk>
     <zscript>
         public void changeSubmitStatus() {
@@ -25,14 +24,8 @@
 
         }
     </zscript>
-    <window position="center" 
-            border="normal" 
-            mode="embedded" 
-            draggable="false" 
-            width="480px" 
-            title="Welcome! New User" 
-            self="@define(content)"
-            viewModel="@id('vm')@init('com.fif.viewmodel.RegistrationViewModel')">
+    <window position="center" border="normal" mode="embedded" draggable="false" width="480px" title="Edit existing user" self="@define(content)" 
+            viewModel="@id('vm')@init('com.fif.viewmodel.EditViewModel')">
         <grid>
             <auxhead>
                 <auxheader iconSclass="z-icon-user" label="Registeration Form" colspan="2"/>
@@ -44,22 +37,22 @@
             <rows>
                 <row>
                     <label value="User Name"/>
-                    <textbox constraint="no empty" value="@save(vm.username)"/>
+                    <textbox constraint="no empty" value="@load(vm.username) @save(vm.username)"/>
                 </row>
                 <row>
                     <label value="Gender"/>
-                    <radiogroup selectedItem="@save(vm.gender)">
+                    <radiogroup selectedItem="@load(vm.gender) @save(vm.gender)">
                         <radio iconSclass="z-icon-male" label="Male" value="male"/>
                         <radio iconSclass="z-icon-female" label="Female" value="female"/>
                     </radiogroup>
                 </row>
                 <row>
                     <label value="Birthday"/>
-                    <datebox width="100%" constraint="no future, no today, no empty" value="@save(vm.birthday)"/>
+                    <datebox width="100%" constraint="no future, no today, no empty" value="@bind(vm.birthday)"/>
                 </row>
                 <row>
                     <label value="Job"/>
-                    <combobox constraint="no empty" id="jobs" value="@save(vm.jobs)">
+                    <combobox constraint="no empty" id="jobs" value="@load(vm.jobs) @save(vm.jobs)">
                         <comboitem label="IT" value="IT"/>
                         <comboitem label="HR" value="HR"/>
                         <comboitem label="Data" value="Data"/>
@@ -79,7 +72,7 @@
                     </hbox>
                     <hbox spacing="24px" width="100%">
                         <button id="resetForm" label="Reset" onClick="resetButton()" href="table.zul"/>
-                        <button id="submitForm" label="Submit" disabled="true" onClick="@command('submitForm')"/>
+                        <button id="submitForm" label="Submit" disabled="true" onClick="@command('updateUser')"/>
                     </hbox>
                 </row>
             </rows>

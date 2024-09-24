@@ -3,6 +3,7 @@ package com.fif.model;
 import java.time.LocalDate;
 
 public class User {
+    private String id;
     private String name;
     private String gender;
     private LocalDate birthday;
@@ -40,7 +41,16 @@ public class User {
         this.job = job;
     }
 
-    public User(String name, String gender, LocalDate birthday, String job) {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public User(String id, String name, String gender, LocalDate birthday, String job) {
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.birthday = birthday;

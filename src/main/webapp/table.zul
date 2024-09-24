@@ -1,45 +1,56 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul" ?>
 <zk>
-    <vbox self="@define(content)" apply="com.fif.controller.UserController">
-        <label value="Search"/>
-        <hbox>
-            <textbox id="searchUser"/>
-            <button id="searchButton" label="Search"/>
-        </hbox>
-        <grid id="userGrid">
-            <columns>
-                <column label="Username"/>
-                <column label="Gender"/>
-                <column label="Birthday"/>
-                <column label="Job"/>
-            </columns>
-            <template name="model">
-                <row>
-                    <label value="${each.name}"/>
-                    <label value="${each.gender}"/>
-                    <label value="${each.birthday}"/>
-                    <label value="${each.job}"/>
-                </row>
-            </template><!-- <rows>
-                <row>
-                    <label value="layla"/>
-                    <label value="Female"/>
-                    <label value="2000-05-04"/>
-                    <label value="Engineering"/>
-                </row>
-                <row>
-                    <label value="markus"/>
-                    <label value="Male"/>
-                    <label value="2000-04-04"/>
-                    <label value="Engineering"/>
-                </row>
-                <row>
-                    <label value="markus"/>
-                    <label value="Male"/>
-                    <label value="2000-04-04"/>
-                    <label value="Engineering"/>
-                </row>
-            </rows> -->
-        </grid>
-    </vbox>
+    <window viewModel="@id('vm')@init('com.fif.viewmodel.UserViewmodel')">
+        <vbox self="@define(content)">
+            <label value="Search"/>
+            <hbox>
+                <textbox id="searchUser" value="@save(vm.keyword)"/>
+                <button id="searchButton" label="Search" onClick="@command('searchByName')"/>
+            </hbox>
+            <grid model="@init(vm.dataUser)">
+                <columns>
+                    <column label="Username"/>
+                    <column label="Gender"/>
+                    <column label="Birthday"/>
+                    <column label="Job"/>
+                    <column label="Action"/>
+                </columns>
+                <template name="model">
+                    <row>
+                        <label value="${each.name}"/>
+                        <label value="${each.gender}"/>
+                        <label value="${each.birthday}"/>
+                        <label value="${each.job}"/>
+                        <hbox>
+                            <button label="Edit" onClick="@command('redirectEdit', id=each.id)"/>
+                            <button label="Delete" onClick="@command('deleteUser', id=each.id)" style="background-color: red;"/>
+                        </hbox>
+                    </row>
+                </template>
+                <!-- <rows>
+                    <row>
+                        <label value="layla"/>
+                        <label value="Female"/>
+                        <label value="2000-05-04"/>
+                        <label value="Engineering"/>
+                    </row>
+                    <row>
+                        <label value="markus"/>
+                        <label value="Male"/>
+                        <label value="2000-04-04"/>
+                        <label value="Engineering"/>
+                    </row>
+                    <row>
+                        <label value="markus"/>
+                        <label value="Male"/>
+                        <label value="2000-04-04"/>
+                        <label value="Engineering"/>
+                    </row>
+                </rows> -->
+            </grid>
+        </vbox>
+        <popup id="editPopup">
+            <label value="this is edit"/>
+        </popup>
+    </window>
 </zk>

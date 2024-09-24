@@ -1,6 +1,7 @@
 package com.fif.controller;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
@@ -45,8 +46,8 @@ public class RegistrationController extends SelectorComposer<Component> {
         String gender = this.gender.getSelectedItem().getValue();
         LocalDate birthday = dateUtils.convertToLocalDateViaInstant(this.birthday.getValue());
         String job = this.jobs.getSelectedItem().getValue();
-        
-        User newUser = new User(username, gender, birthday, job);
+
+        User newUser = new User(UUID.randomUUID().toString(), username, gender, birthday, job);
 
         userService.saveUser(newUser);
         userController.dataUser.clear();
