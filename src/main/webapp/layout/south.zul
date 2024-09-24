@@ -1,0 +1,3 @@
+<hbox width="100%" align="center" pack="center">
+    <label value="Copyright 2005-2011 zkoss.org. All rights reserved." style="font-size: 10px;"/>
+</hbox>

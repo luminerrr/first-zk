@@ -1,0 +1,88 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul" ?>
+
+<zk>
+    <zscript>
+        public void changeSubmitStatus() {
+            boolean isChecked =  ((Checkbox) self.getFellow(&quot;acceptTerm&quot;)).isChecked();
+            Button submitButton =  (Button) self.getFellow(&quot;submitForm&quot;);
+
+            if(isChecked) {
+                submitButton.setDisabled(false);
+                submitButton.setIconSclass(&quot;z-icon-check&quot;);
+            } else {
+                submitButton.setDisabled(true);
+                submitButton.setIconSclass(&quot;&quot;);
+            }
+        }
+
+        public void resetButton() {
+            Textbox textBox = (Textbox) self.getFellow(&quot;username&quot;);
+            textBox.setRawValue(&quot;&quot;);
+            Radiogroup radio = (Radiogroup) self.getFellow(&quot;gender&quot;);
+            radio.setSelectedItem(null);
+            Datebox datebox = (Datebox) self.getFellow(&quot;birthday&quot;);
+            datebox.setRawValue(&quot;&quot;);
+
+        }
+    </zscript>
+    <window position="center" border="normal" mode="embedded" draggable="false" width="480px" title="Welcome! New User" self="@define(content)"
+            apply="com.fif.controller.RegistrationController">
+        <grid>
+            <auxhead>
+                <auxheader iconSclass="z-icon-user" label="Registeration Form" colspan="2"/>
+            </auxhead>
+            <columns visible="false">
+                <column/>
+                <column width="240px"/>
+            </columns>
+            <rows>
+                <row>
+                    <label value="User Name"/>
+                    <textbox constraint="no empty" id="username"/>
+                </row>
+                <row>
+                    <label value="Gender"/>
+                    <radiogroup id="gender">
+                        <radio iconSclass="z-icon-male" label="Male" value="male"/>
+                        <radio iconSclass="z-icon-female" label="Female" value="female"/>
+                    </radiogroup>
+                </row>
+                <row>
+                    <label value="Birthday"/>
+                    <datebox width="100%" constraint="no future, no today, no empty" id="birthday"/>
+                </row>
+                <row>
+                    <label value="Job"/>
+                    <combobox constraint="no empty" id="jobs">
+                        <comboitem label="IT"/>
+                        <comboitem label="HR"/>
+                        <comboitem label="Data"/>
+                        <comboitem label="Accountant"/>
+                    </combobox>
+                </row>
+                <row spans="2">
+                    <hbox>
+                        <checkbox id="acceptTerm" label="Accept Term of Use" onCheck="changeSubmitStatus()"/>
+                        <a label="(Click for detail)" popup="tosPopup"/>
+                    </hbox>
+                </row>
+                <row>
+                    <hbox>
+                        <a label="Help" popup="helpPopup"/>
+                        <label value="(Ctrl+H)"/>
+                    </hbox>
+                    <hbox spacing="24px" width="100%">
+                        <button id="resetForm" label="Reset" onClick="resetButton()"/>
+                        <button id="submitForm" label="Submit" disabled="true" />
+                    </hbox>
+                </row>
+            </rows>
+        </grid>
+        <popup id="tosPopup">
+            <include src="tos.zul"/>
+        </popup>
+        <popup id="helpPopup">
+            <include src="help.zul"/>
+        </popup>
+    </window>
+</zk>

@@ -1,0 +1,7 @@
+<zk>
+    <window >
+        <hbox>
+            <label value="Welcome to pabji mobile"/>
+        </hbox>
+    </window>
+</zk>

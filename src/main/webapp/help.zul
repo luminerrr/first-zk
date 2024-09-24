@@ -1,0 +1,7 @@
+<window width="480px" title="Help">
+    <vbox>
+        <label value="Help"/>
+        <separator/>
+        If you need help, please call 911
+     </vbox>
+</window>

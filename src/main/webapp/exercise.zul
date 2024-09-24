@@ -1,0 +1,14 @@
+<zk>
+    <window title="List of Components">
+        <vbox>
+            <a id="label" label="Test"/>
+            <a id="grid" label="Grid"/>
+            <a id="listBox" label="ListBox"/>
+            <a id="tree" label="Tree"/>
+            <a id="menuBar" label="MenuBar"/>
+            <a id="form" label="Form"/>
+            <a id="layout" label="Layout"/>
+        </vbox>
+    </window>
+    
+</zk>

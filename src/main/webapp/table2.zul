@@ -1,0 +1,25 @@
+<zk>
+    <vbox apply="com.fif.controller.UserController">
+        <label value="Search"/>
+        <hbox>
+            <textbox id="searchUser"/>
+            <button id="searchButton" label="Search"/>
+        </hbox>
+        <grid id="userGrid">
+            <columns>
+                <column label="Username"/>
+                <column label="Gender"/>
+                <column label="Birthday"/>
+                <column label="Job"/>
+            </columns>
+            <template name="model">
+                <row>
+                    <label value="${each.name}"/>
+                    <label value="${each.gender}"/>
+                    <label value="${each.birthday}"/>
+                    <label value="${each.job}"/>
+                </row>
+            </template>
+        </grid>
+    </vbox>
+</zk>

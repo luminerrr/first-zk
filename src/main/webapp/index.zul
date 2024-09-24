@@ -1,0 +1,12 @@
+<zk>
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm')@init('com.fif.MyViewModel')"
+		validationMessages="@id('vmsgs')">
+		<hlayout>count: <label value="@load(vm.count)" /></hlayout>
+		<hlayout>
+			name: <label value="@load(vm.name)"/>
+		</hlayout>
+		<button label="add" onClick="@command('cmd')"/>
+		<button label="change name to mark" onClick="@command('changeName')"/>
+	</window>
+</zk>

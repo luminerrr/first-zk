@@ -1,0 +1,7 @@
+<window width="480px" title="Terms of Use">
+    <vbox>
+        <label value="Terms of Use"/>
+        <separator/>
+        Please use wisely
+     </vbox>
+</window>

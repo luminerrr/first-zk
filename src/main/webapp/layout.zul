@@ -1,0 +1,33 @@
+<zk>
+    <borderlayout height="full">
+        <north border="0">
+            <borderlayout height="80px">
+                <west border="0">
+                    <vbox align="center" pack="center" height="100%">
+                        <label value="Company Logo"/>
+                    </vbox>
+                </west>
+                <east border="0">
+                    <vbox align="center" pack="center" height="100%">
+                        <menubar id="menubar">
+                            <menuitem label="About us" onClick='inner.src = "welcome.zul"'/>
+                            <menuitem label="Table" onClick='inner.src = "table2.zul"'/>
+                            <menuitem label="Register" onClick='inner.src = "registration2.zul"'/>
+                        </menubar>
+                    </vbox>
+                </east>
+            </borderlayout>
+        </north>
+        <center>
+            <box align="center" pack="center" width="100%" height="100%" >
+                <include id="inner" src="welcome.zul"/>
+            </box>
+        </center>
+        <east title="this is east"></east>
+        <south border="0" style="background-color:#d1d1d1;">
+            <hbox width="100%" align="center" pack="center">
+                <label value="Copyright 2005-2011 zkoss.org. All rights reserved." style="font-size: 10px;"/>
+            </hbox>
+        </south>
+    </borderlayout>
+</zk>

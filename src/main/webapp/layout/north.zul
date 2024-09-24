@@ -1,0 +1,24 @@
+<zk>
+    <borderlayout height="80px">
+        <west border="0">
+            <vbox align="center" pack="center" height="100%">
+                <label value="Company Logo"/>
+            </vbox>
+        </west>
+        <east border="0">
+            <vbox align="center" pack="center" height="100%">
+                <menubar id="menubar">
+                    <menu label="About us"></menu>
+                    <menu label="Contact us us"></menu>
+                    <menu label="Recent Projects">
+                        <menupopup>
+                            <menuitem label="New" onClick="alert(self.label)"/>
+                            <menuitem label="Open" onClick="alert(self.label)"/>
+                            <menuitem label="Save" onClick="alert(self.label)"/>
+                        </menupopup>
+                    </menu>
+                </menubar>
+            </vbox>
+        </east>
+    </borderlayout>
+</zk>

@@ -1,0 +1,36 @@
+<zk>
+    <borderlayout height="full">
+        <north border="0">
+            <borderlayout height="80px">
+                <west border="0">
+                    <vbox align="center" pack="center" height="100%">
+                        <label value="Company Logo"/>
+                    </vbox>
+                </west>
+                <east border="0">
+                    <vbox align="center" pack="center" height="100%">
+                        <menubar id="menubar">
+                            <menuitem label="About us" href="/"/>
+                            <!-- <menuitem label="Table" onClick='inner.src = "table.zul"'/> -->
+                            <menuitem label="Table" href="table.zul"/>
+                            <!-- <menuitem label="Register" onClick="inner.src = &quot;registration.zul&quot;"/> -->
+                            <menuitem label="Register" href="registration.zul" />
+                        </menubar>
+                    </vbox>
+                </east>
+            </borderlayout>
+        </north>
+        <center>
+            <box align="center" pack="center" width="100%" height="100%" self="@insert(content)">
+                <!-- <include id="inner" src="welcome.zul"/>
+                <include src="registration.zul"/> -->
+            </box>
+        </center>
+        <east title="this is east"></east>
+        <south border="0" style="background-color:#d1d1d1;">
+            <hbox width="100%" align="center" pack="center">
+                <label value="Copyright 2005-2011 zkoss.org. All rights reserved." style="font-size: 10px;"/>
+            </hbox>
+        </south>
+    </borderlayout>
+</zk>

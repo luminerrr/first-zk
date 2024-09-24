@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk>
+	<!-- [Optional]
+	Uncomment if you want to defines the application's name 
+	
+	<preference>
+		<name>org.zkoss.zk.ui.WebApp.name</name>
+		<value>day1-zk</value>
+	</preference>
+	-->
+	<!-- <library-property>
+		<name>org.zkoss.zk.config.path</name>
+		<value>/WEB-INF/zk-dev.xml</value>
+	</library-property>
+	<system-config>
+		<disable-zscript>false</disable-zscript>
+	</system-config>
+	<client-config>
+		<debug-js>true</debug-js>
+	</client-config>
+	<library-property>
+		<name>org.zkoss.zk.ui.versionInfo.enabled</name>
+		<value>true</value>
+	</library-property>
+	<library-property>
+		<name>org.zkoss.zk.ZUML.cache</name>
+		<value>false</value>
+	</library-property>
+	<library-property>
+		<name>org.zkoss.zk.WPD.cache</name>
+		<value>false</value>
+	</library-property>
+	<library-property>
+		<name>org.zkoss.zk.WCS.cache</name>
+		<value>false</value>
+	</library-property>
+	<library-property>
+		<name>org.zkoss.web.classWebResource.cache</name>
+		<value>false</value>
+	</library-property>
+	<library-property>
+		<name>org.zkoss.util.label.cache</name>
+		<value>false</value>
+	</library-property> -->
+
+	
+</zk>
