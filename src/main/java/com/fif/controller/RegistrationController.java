@@ -3,6 +3,7 @@ package com.fif.controller;
 import java.time.LocalDate;
 
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -50,6 +51,7 @@ public class RegistrationController extends SelectorComposer<Component> {
         userService.saveUser(newUser);
         userController.dataUser.clear();
         userController.dataUser.addAll(userService.getAllUsers());
+        Executions.sendRedirect("/table.zul");
         System.out.println(userController.dataUser.size());
     }
 }

@@ -54,10 +54,10 @@
                 <row>
                     <label value="Job"/>
                     <combobox constraint="no empty" id="jobs">
-                        <comboitem label="IT"/>
-                        <comboitem label="HR"/>
-                        <comboitem label="Data"/>
-                        <comboitem label="Accountant"/>
+                        <comboitem label="IT" value="IT"/>
+                        <comboitem label="HR" value="HR"/>
+                        <comboitem label="Data" value="Data"/>
+                        <comboitem label="Accountant" value="Accountant"/>
                     </combobox>
                 </row>
                 <row spans="2">
@@ -72,7 +72,7 @@
                         <label value="(Ctrl+H)"/>
                     </hbox>
                     <hbox spacing="24px" width="100%">
-                        <button id="resetForm" label="Reset" onClick="resetButton()"/>
+                        <button id="resetForm" label="Reset" onClick="resetButton()" href="table.zul"/>
                         <button id="submitForm" label="Submit" disabled="true" />
                     </hbox>
                 </row>
