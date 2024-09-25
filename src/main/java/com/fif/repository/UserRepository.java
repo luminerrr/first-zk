@@ -22,7 +22,7 @@ public class UserRepository {
     public List<User> getAllUsers() {
         Query query = em.createQuery("SELECT u FROM users u");
         List<User> res = query.getResultList();
-        System.out.println(res);
+
         return res;
     }
 
@@ -50,7 +50,6 @@ public class UserRepository {
 
     @Transactional
     public User editUser(User user) {
-        System.out.println(user.getId());
         User selectedUser = getUserById(user.getId());
         if(selectedUser != null) {
             selectedUser.setName(user.getName());

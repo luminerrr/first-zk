@@ -40,7 +40,6 @@ public class UserViewmodel {
     public void searchByName() {
         List<User> users = userService.findByName(keyword);
         dataUser.clear();
-        System.out.println(users);
         dataUser.addAll(users);
     }
 
