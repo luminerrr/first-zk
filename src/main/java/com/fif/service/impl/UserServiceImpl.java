@@ -1,6 +1,5 @@
 package com.fif.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +31,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findByName(String name) {
-        List<User> result = new ArrayList<User>();
-        
-        // if (name.equals("") || name == null) {
-        // return users;
-        // }
-
-        // for (User user : users) {
-        // if (user.getName().toLowerCase().contains(name.toLowerCase())) {
-        // result.add(user);
-        // }
-        // }
+        List<User> result = userRepository.getAllUsersByName(name);
+        if(name.isEmpty()) {
+            return this.getAllUsers();
+        }
 
         return result;
     }

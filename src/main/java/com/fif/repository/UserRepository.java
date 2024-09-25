@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,12 +56,18 @@ public class UserRepository {
             selectedUser.setName(user.getName());
             selectedUser.setBirthday(user.getBirthday());
             selectedUser.setGender(user.getGender());
-            selectedUser.setBirthday(user.getBirthday());
             selectedUser.setJob(user.getJob());
             em.merge(selectedUser);
         } 
 
         return selectedUser;
+    }
+
+    @Transactional
+    public List<User> getAllUsersByName(String name) {
+        TypedQuery<User> query = em.createQuery("SELECT u FROM users u WHERE LOWER(u.name) LIKE LOWER(:name)", User.class);
+        query.setParameter("name", "%" + name + "%");
+        return query.getResultList();
     }
 
 }
