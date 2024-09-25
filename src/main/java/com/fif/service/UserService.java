@@ -2,7 +2,7 @@ package com.fif.service;
 
 import java.util.List;
 
-import com.fif.model.User;
+import com.fif.entity.User;
 
 public interface UserService {
     void saveUser(User user);
@@ -11,9 +11,9 @@ public interface UserService {
 
     List<User> findByName(String name);
 
-    void deleteUser(String id);
+    void deleteUser(Integer id);
 
-    User getById(String id);
+    User getById(Integer id);
 
     void updateUser(User user);
 }

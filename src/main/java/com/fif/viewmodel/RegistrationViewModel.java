@@ -2,23 +2,32 @@ package com.fif.viewmodel;
 
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.UUID;
 
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.select.annotation.VariableResolver;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
 
-import com.fif.model.User;
+import com.fif.entity.User;
 import com.fif.service.UserService;
 import com.fif.service.impl.UserServiceImpl;
 import com.fif.utils.DateUtils;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+@VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class RegistrationViewModel {
     private String username;
     private String gender;
     private Date birthday;
     private String jobs;
 
+    @WireVariable
     UserService userService = new UserServiceImpl();
+
     UserViewmodel userViewmodel = new UserViewmodel();
 
     // Utils
@@ -27,43 +36,17 @@ public class RegistrationViewModel {
     @Command
     public void submitForm() {
         LocalDate birthLocalDate = dateUtils.convertToLocalDateViaInstant(birthday);
-        User newUser = new User(UUID.randomUUID().toString(), username, gender, birthLocalDate, jobs);
+        User newUser = new User();
+        newUser.setName(username);
+        newUser.setBirthday(birthLocalDate);
+        newUser.setGender(gender);
+        newUser.setJob(jobs);
         userService.saveUser(newUser);
-        userViewmodel.dataUser.clear();
-        userViewmodel.dataUser.addAll(userService.getAllUsers());
         Executions.sendRedirect("/table.zul");
     }
 
-    public String getUsername() {
-        return username;
-    }
+    @Command
+    public void resetButton() {
 
-    public void setUsername(String username) {
-        this.username = username;
     }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getJobs() {
-        return jobs;
-    }
-
-    public void setJobs(String jobs) {
-        this.jobs = jobs;
-    }
-
 }

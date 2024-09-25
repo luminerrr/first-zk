@@ -5,9 +5,18 @@
  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"> 
 
 	<description><![CDATA[My ZK Application]]></description>
-	<display-name>day1-zk</display-name>
+	<display-name>zkoss-db</display-name>
 
-	<!-- //// -->
+	<!-- Spring configuration -->
+	<!-- Initialize spring context -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- Enable webapp Scopes-->
+	 <listener>
+    	<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
 	<!-- ZK -->
 	<listener>
 		<description>ZK listener for session cleanup</description>
@@ -106,9 +115,7 @@
 		<url-pattern>your URI pattern</url-pattern>
 	</filter-mapping>
 	-->
-	<!-- //// -->
 
-	<!-- ///////////// -->
 	<!-- DSP (optional) 
 	Uncomment it if you want to use DSP
 	However, it is turned on since zksandbox uses DSP to generate CSS.
@@ -126,7 +133,6 @@
 	</servlet-mapping>
 	-->
 	
-	<!-- /////////// -->
 	<!-- [Optional] Session timeout -->
 	<session-config>
 		<session-timeout>60</session-timeout>

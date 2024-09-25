@@ -1,19 +1,6 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul" ?>
 <zk>
     <zscript>
-        public void changeSubmitStatus() {
-            boolean isChecked =  ((Checkbox) self.getFellow(&quot;acceptTerm&quot;)).isChecked();
-            Button submitButton =  (Button) self.getFellow(&quot;submitForm&quot;);
-
-            if(isChecked) {
-                submitButton.setDisabled(false);
-                submitButton.setIconSclass(&quot;z-icon-check&quot;);
-            } else {
-                submitButton.setDisabled(true);
-                submitButton.setIconSclass(&quot;&quot;);
-            }
-        }
-
         public void resetButton() {
             Textbox textBox = (Textbox) self.getFellow(&quot;username&quot;);
             textBox.setRawValue(&quot;&quot;);
@@ -28,7 +15,7 @@
             viewModel="@id('vm')@init('com.fif.viewmodel.EditViewModel')">
         <grid>
             <auxhead>
-                <auxheader iconSclass="z-icon-user" label="Registeration Form" colspan="2"/>
+                <auxheader iconSclass="z-icon-user" label="Edit User Form" colspan="2"/>
             </auxhead>
             <columns visible="false">
                 <column/>
@@ -59,12 +46,6 @@
                         <comboitem label="Accountant" value="Accountant"/>
                     </combobox>
                 </row>
-                <row spans="2">
-                    <hbox>
-                        <checkbox id="acceptTerm" label="Accept Term of Use" onCheck="changeSubmitStatus()"/>
-                        <a label="(Click for detail)" popup="tosPopup"/>
-                    </hbox>
-                </row>
                 <row>
                     <hbox>
                         <a label="Help" popup="helpPopup"/>
@@ -72,7 +53,7 @@
                     </hbox>
                     <hbox spacing="24px" width="100%">
                         <button id="resetForm" label="Reset" onClick="resetButton()" href="table.zul"/>
-                        <button id="submitForm" label="Submit" disabled="true" onClick="@command('updateUser')"/>
+                        <button id="submitForm" label="Submit" onClick="@command('updateUser')"/>
                     </hbox>
                 </row>
             </rows>

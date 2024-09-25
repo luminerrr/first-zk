@@ -1,7 +1,8 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul" ?>
 <zk>
     <window viewModel="@id('vm')@init('com.fif.viewmodel.UserViewmodel')">
-        <vbox self="@define(content)">
+        <vbox self="@define(content)" onOK="@command('searchByName')">
+        <label value="Employee Table" style="font-size:24px;"/>
             <label value="Search"/>
             <hbox>
                 <textbox id="searchUser" value="@save(vm.keyword)"/>
@@ -9,6 +10,7 @@
             </hbox>
             <grid model="@init(vm.dataUser)">
                 <columns>
+                    <column label="Id" />
                     <column label="Username"/>
                     <column label="Gender"/>
                     <column label="Birthday"/>
@@ -17,6 +19,7 @@
                 </columns>
                 <template name="model">
                     <row>
+                        <label value="${each.id}" />
                         <label value="${each.name}"/>
                         <label value="${each.gender}"/>
                         <label value="${each.birthday}"/>
@@ -50,7 +53,7 @@
             </grid>
         </vbox>
         <popup id="editPopup">
-            <label value="this is edit"/>
+            <label value="this is edit" />
         </popup>
     </window>
 </zk>

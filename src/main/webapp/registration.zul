@@ -29,7 +29,7 @@
             border="normal" 
             mode="embedded" 
             draggable="false" 
-            width="480px" 
+            width="480px"
             title="Welcome! New User" 
             self="@define(content)"
             viewModel="@id('vm')@init('com.fif.viewmodel.RegistrationViewModel')">

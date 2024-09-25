@@ -1,27 +1,39 @@
 package com.fif.viewmodel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.select.annotation.VariableResolver;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
 
-import com.fif.Users;
-import com.fif.model.User;
+import com.fif.entity.User;
 import com.fif.service.UserService;
-import com.fif.service.impl.UserServiceImpl;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+@VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class UserViewmodel {
     private String keyword;
 
     public ListModelList<User> dataUser = new ListModelList<>();
-    private UserService userService = new UserServiceImpl();
+    
+    @WireVariable
+    private UserService userService;
 
     @Init
     public void init() {
-        dataUser.addAll(Users.users);
+        List<User> allUsers = userService.getAllUsers();
+        if(allUsers.isEmpty()) allUsers = new ArrayList<>();
+        System.out.println(allUsers);
+        dataUser.addAll(userService.getAllUsers());
     }
 
     @Command
@@ -33,10 +45,9 @@ public class UserViewmodel {
     }
 
     @Command
-    public void deleteUser(@BindingParam("id") String id) {
+    public void deleteUser(@BindingParam("id") Integer id) {
         userService.deleteUser(id);
-        dataUser.clear();
-        dataUser.addAll(Users.users);
+        refreshUser();
     }
 
     @Command
@@ -44,20 +55,8 @@ public class UserViewmodel {
         Executions.sendRedirect("/edit.zul?id=" + id);
     }
 
-    public String getKeyword() {
-        return keyword;
+    private void refreshUser() {
+        dataUser.clear();
+        dataUser.addAll(userService.getAllUsers());
     }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
-    public ListModelList<User> getDataUser() {
-        return dataUser;
-    }
-
-    public void setDataUser(ListModelList<User> dataUser) {
-        this.dataUser = dataUser;
-    }
-
 }

@@ -1,16 +1,16 @@
 <zk>
     <borderlayout height="full">
-        <north border="0">
-            <borderlayout height="80px">
-                <west border="0">
+        <north border="0" style="background-color:#d1d1d1;">
+            <borderlayout height="80px" style="background-color:#d1d1d1;">
+                <west border="0" style="background-color:#d1d1d1;">
                     <vbox align="center" pack="center" height="100%">
-                        <label value="Company Logo"/>
+                        <label value="Employee Dashboard" style="font-size: 24px;"/>
                     </vbox>
                 </west>
-                <east border="0">
+                <east border="0" style="background-color:#d1d1d1;">
                     <vbox align="center" pack="center" height="100%">
-                        <menubar id="menubar">
-                            <menuitem label="About us" href="/"/>
+                        <menubar id="menubar" style="background-color:#d1d1d1; border: 0;" >
+                            <menuitem label="About us" href="/" />
                             <!-- <menuitem label="Table" onClick='inner.src = "table.zul"'/> -->
                             <menuitem label="Table" href="table.zul"/>
                             <!-- <menuitem label="Register" onClick="inner.src = &quot;registration.zul&quot;"/> -->
@@ -20,13 +20,17 @@
                 </east>
             </borderlayout>
         </north>
-        <center>
+        <center border="0">
             <box align="center" pack="center" width="100%" height="100%" self="@insert(content)">
                 <!-- <include id="inner" src="welcome.zul"/>
                 <include src="registration.zul"/> -->
             </box>
         </center>
-        <east title="this is east"></east>
+        <east border="0" style="background-color:#d1d1d1;">
+            <vbox>
+                <label value="Employee News" />
+            </vbox>
+        </east>
         <south border="0" style="background-color:#d1d1d1;">
             <hbox width="100%" align="center" pack="center">
                 <label value="Copyright 2005-2011 zkoss.org. All rights reserved." style="font-size: 10px;"/>

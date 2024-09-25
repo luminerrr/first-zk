@@ -1,30 +1,40 @@
 package com.fif.viewmodel;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.select.annotation.VariableResolver;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zkplus.spring.DelegatingVariableResolver;
 
-import com.fif.model.User;
+import com.fif.entity.User;
 import com.fif.service.UserService;
-import com.fif.service.impl.UserServiceImpl;
 import com.fif.utils.DateUtils;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+@VariableResolver(DelegatingVariableResolver.class)
 public class EditViewModel {
-    private String userId = "";
+    private Integer userId;
     private String username;
     private String gender;
     private Date birthday;
     private String jobs;
 
-    UserService userService = new UserServiceImpl();
+    @WireVariable
+    UserService userService;
     DateUtils dateUtils = new DateUtils();
 
     @Init
     public void init() {
-        this.userId = Executions.getCurrent().getParameter("id");
-        if (this.userId == null || this.userId.isEmpty()) {
+        this.userId = Integer.parseInt(Executions.getCurrent().getParameter("id"));
+        if (this.userId == null) {
             Executions.sendRedirect("hello-world.zul");
             return;
         }
@@ -40,40 +50,15 @@ public class EditViewModel {
 
     @Command
     public void updateUser() {
-        User updatedUser = new User(userId, username, gender, dateUtils.convertToLocalDateViaInstant(birthday), jobs);
-        userService.updateUser(updatedUser);
+        LocalDate birthdayLocalDate = dateUtils.convertToLocalDateViaInstant(birthday);
+        User user = new User();
+        user.setName(username);
+        user.setBirthday(birthdayLocalDate);
+        user.setGender(gender);
+        user.setJob(jobs);
+        user.setId(userId);
+        userService.updateUser(user);
         Executions.sendRedirect("table.zul");
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getJobs() {
-        return jobs;
-    }
-
-    public void setJobs(String jobs) {
-        this.jobs = jobs;
+        return;
     }
 }

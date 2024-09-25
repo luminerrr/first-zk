@@ -1,1 +1,7 @@
 target/
+.idea/
+data/
+data.tmp/
+.settings/
+data.*
+.vscode
